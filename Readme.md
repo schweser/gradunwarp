@@ -122,7 +122,7 @@ Some thoughts:
 
 ## License
 
-Please see the Copying.md file in the distribution.
+Please see the [Copying.md][Copying.md] file in the distribution.
 
 ## Credit
 
@@ -143,3 +143,4 @@ Please see the Copying.md file in the distribution.
 [PyDICOM]: http://code.google.com/p/pydicom
 [nose]: http://pypi.python.org/pypi/nose
 [sphinx]: http://sphinx-doc.org
+[Copying.md]: Copying.md
