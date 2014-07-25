@@ -1,34 +1,28 @@
-.. -*- mode: rst; fill-column: 78 -*-
-.. ex: set sts=4 ts=4 sw=4 et tw=79:
-.. vim:syntax=rest
+# Copyright and Licenses
 
+This is the [Human Connectome Project gradunwarp package][gradunwarp-hcp]. 
 
-.. _license:
+It is forked from a ["no longer actively maintained" gradunwarp package][gradunwarp-ksubramz].
 
-**********************
-Copyright and Licenses
-**********************
+This fork contains changes made for and by the WU-Minn Human Connectome Project consortium ([HCP][HCP]).
 
-The gradunwarp  package, including all examples, code snippets and attached
-documentation is covered by the MIT license.
+This HCP gradunwarp package, including all examples, code snippets and attached documentation 
+is covered by the MIT license (as supplied below.)
 
-3rd Party Code
-==============
+# 3rd Party Code
 
-NiBabel
--------
+## NiBabel
 
 The nibabel package, including all examples, code snippets and attached
 documentation is covered by the MIT license.
 
-::
+# The MIT License
 
-  The MIT License
-
-  Copyright (c) 2009-2011 Matthew Brett <matthew.brett@gmail.com>
-  Copyright (c) 2010-2011 Stephan Gerhard <git@unidesign.ch>
-  Copyright (c) 2006-2010 Michael Hanke <michael.hanke@gmail.com>
-  Copyright (c) 2010-2011 Jarrod Millman <jarrod.millman@gmail.com>
+  * Copyright (c) 2012-2014 [WU-Minn Human Connectome Project consortium][HCP]
+  * Copyright (c) 2009-2011 Matthew Brett <matthew.brett@gmail.com>
+  * Copyright (c) 2010-2011 Stephan Gerhard <git@unidesign.ch>
+  * Copyright (c) 2006-2010 Michael Hanke <michael.hanke@gmail.com>
+  * Copyright (c) 2010-2011 Jarrod Millman <jarrod.millman@gmail.com>
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -47,3 +41,9 @@ documentation is covered by the MIT license.
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
+
+<!-- References -->
+
+[gradunwarp-hcp]: https://github.com/Washington-University/gradunwarp
+[gradunwarp-ksubramz]: https://github.com/ksubramz/gradunwarp
+[HCP]: http://www.humanconnectome.org

@@ -1,10 +1,14 @@
-NOTE: This project is no longer actively maintained.
-
 # gradunwarp
 
+This is the [Human Connectome Project gradunwarp package][gradunwarp-hcp].
+
+It is forked from a ["no longer actively maintained" gradunwarp package][gradunwarp-ksubramz].
+
+This fork contains changes made for and by the WU-Minn Human Connectome Project consortium ([HCP][HCP]).
+
 gradunwarp is a Python/Numpy package used to unwarp the distorted
-volumes (due to the gradient field іnhomogenities). Currently, it can
-unwarp Siemens data (and GE support very soon).
+volumes (due to the gradient field inhomogenities). Currently, it can
+unwarp Siemens data.
 
 ## Installation
 
@@ -12,17 +16,17 @@ unwarp Siemens data (and GE support very soon).
 
 gradunwarp needs
 
-> -   Python (>2.7)
-> -   Numpy (preferably, the latest)
-> -   Scipy (preferably, the latest)
-> -   Numpy devel package (to compile external modules written in C)
-> -   nibabel (latest trunk, which has the MGH support)
+* Python (>2.7)
+* Numpy (preferably, the latest)
+* Scipy (preferably, the latest)
+* Numpy devel package (to compile external modules written in C)
+* nibabel (latest trunk, which has the MGH support)
 
 requirements for nibabel. 
 
-> - PyDICOM 0.9.5 or greater (for DICOM support)
-> - nose 0.11 or greater (to run the tests)
-> - sphinx (to build the documentation)
+* PyDICOM 0.9.5 or greater (for DICOM support)
+* nose 0.11 or greater (to run the tests)
+* sphinx (to build the documentation)
 
 The installation of these in Ubuntu is as simple as
 
@@ -31,19 +35,16 @@ The installation of these in Ubuntu is as simple as
 
 ### Install
 
-For convenience both the gradunwarp and nibabel tarballs can be
-downloaded from
-
-https://github.com/downloads/ksubramz/gradunwarp/gradunwarp-2.1_slice_alpha.tar.gz
-
-[https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz][]
+For convenience both the gradunwarp tarball can be downloaded 
+[here][gradunwarp-hcp-1.0-tarball] and the nibabel tarball can be downloaded 
+from [here][nibabel-tarball].
 
 They are extracted and the following step is the same for gradunwarp and
 nibabel installation. First, change to the respective directory. Then,
 
     sudo python setup.py install
 
-Note: It is possible that you don’t have superuser permissions. In that
+Note: It is possible that you don't have superuser permissions. In that
 case, you can use the `--prefix` switch of setup.py install.
 
     python setup.py install --prefix=/home/foo/
@@ -141,6 +142,21 @@ as well.
 > -   Jon Polimeni - gradunwarp follows his original MATLAB code
 > -   Karl Helmer - Project Incharge
 > -   Nibabel team
+
+<!-- References -->
+
+[gradunwarp-hcp]: https://github.com/Washington-University/gradunwarp
+[gradunwarp-ksubramz]: https://github.com/ksubramz/gradunwarp
+[HCP]: http://www.humanconnectome.org
+[gradunwarp-hcp-1.0-tarball]: https://github.com/downloads/Washington-University/gradunwarp-1.0.tar.gz
+[nibabel-tarball]: https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
+
+
+ 
+
+
+
+
 
   [https://github.com/downloads/ksubramz/gradunwarp/gradunwarp-2.0_alpha.tar.gz]:
     https://github.com/downloads/ksubramz/gradunwarp/gradunwarp-2.0_alpha.tar.gz
