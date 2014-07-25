@@ -137,9 +137,9 @@ Please see the Copying.md file in the distribution.
 [HCP]: http://www.humanconnectome.org
 [gradunwarp-hcp-1.0-tarball]: https://github.com/downloads/Washington-University/gradunwarp-1.0.tar.gz
 [nibabel-tarball]: https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
-[Numpy]: www.numpy.org
-[Scipy]: www.scipy.org
-[nibabel]: nipy.org/nibabel
-[PyDICOM]: code.google.com/p/pydicom
-[nose]: pypi.python.org/pypi/nose
-[sphinx]: sphinx-doc.org
+[Numpy]: http://www.numpy.org
+[Scipy]: http://www.scipy.org
+[nibabel]: http://nipy.org/nibabel
+[PyDICOM]: http://code.google.com/p/pydicom
+[nose]: http://pypi.python.org/pypi/nose
+[sphinx]: http://sphinx-doc.org
