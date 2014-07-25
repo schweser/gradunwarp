@@ -1,14 +1,15 @@
 # gradunwarp
 
-This is the [Human Connectome Project gradunwarp package][gradunwarp-hcp].
-
-It is forked from a ["no longer actively maintained" gradunwarp package][gradunwarp-ksubramz].
-
-This fork contains changes made for and by the WU-Minn Human Connectome Project consortium ([HCP][HCP]).
-
 gradunwarp is a Python/Numpy package used to unwarp the distorted
 volumes (due to the gradient field inhomogenities). Currently, it can
 unwarp Siemens data.
+
+This is the [Human Connectome Project version of the gradunwarp package][gradunwarp-hcp].
+
+It is forked from a ["no longer actively maintained" gradunwarp package][gradunwarp-ksubramz].
+
+This fork contains changes made for and by the WU-Minn Human Connectome Project consortium ([HCP][HCP])
+for use within the [HCP Minimal Preprocessing Pipelines][HCP Pipelines].
 
 ## Installation
 
@@ -130,6 +131,22 @@ Please see the [Copying.md][Copying.md] file in the distribution.
 * Karl Helmer - Project Incharge
 * Nibabel team
 
+## Note about change history
+
+Some of the changes to this codebase that were made for the HCP, were made when this code
+was not yet forked into its own repository. At that time, this modified version of the 
+gradient unwarping code was embedded in the <code>src/gradient_unwarping</code> 
+subdirectory of the [HCP Pipelines Repository][HCP Pipelines].  
+
+The history (commit comments, changelog, etc. of those changes was not ported to this 
+repository.  The [HCP Pipelines Repository][HCP Pipelines] will keep that history.  
+
+To get the last version of the [HCP Pipelines Repository][HCP Pipelines] before the 
+gradient unwarping code was separated, retrieve commit <code>2e06194921638394c7c0ffd90805fdf06051449a</code>.
+To do this, after cloning the [HCP Pipelines Repository][HCP Pipelines] use:
+
+    $ git checkout 2e06194921638394c7c0ffd90805fdf06051449a
+
 <!-- References -->
 
 [gradunwarp-hcp]: https://github.com/Washington-University/gradunwarp
@@ -144,3 +161,4 @@ Please see the [Copying.md][Copying.md] file in the distribution.
 [nose]: http://pypi.python.org/pypi/nose
 [sphinx]: http://sphinx-doc.org
 [Copying.md]: Copying.md
+[HCP Pipelines]: https://github.com/Washington-University/Pipelines
