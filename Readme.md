@@ -17,16 +17,16 @@ unwarp Siemens data.
 gradunwarp needs
 
 * Python (>2.7)
-* Numpy (preferably, the latest)
-* Scipy (preferably, the latest)
+* [Numpy][Numpy] (preferably, the latest)
+* [Scipy][Scipy] (preferably, the latest)
 * Numpy devel package (to compile external modules written in C)
-* nibabel (latest trunk, which has the MGH support)
+* [nibabel][nibabel] (latest trunk, which has the MGH support)
 
-requirements for nibabel. 
+requirements for nibabel.
 
-* PyDICOM 0.9.5 or greater (for DICOM support)
-* nose 0.11 or greater (to run the tests)
-* sphinx (to build the documentation)
+* [PyDICOM][PyDICOM] 0.9.5 or greater (for DICOM support)
+* [nose][nose] 0.11 or greater (to run the tests)
+* [sphinx][sphinx] (to build the documentation)
 
 The installation of these in Ubuntu is as simple as
 
@@ -35,8 +35,8 @@ The installation of these in Ubuntu is as simple as
 
 ### Install
 
-For convenience both the gradunwarp tarball can be downloaded 
-[here][gradunwarp-hcp-1.0-tarball] and the nibabel tarball can be downloaded 
+For convenience both the gradunwarp tarball can be downloaded
+[here][gradunwarp-hcp-1.0-tarball] and the nibabel tarball can be downloaded
 from [here][nibabel-tarball].
 
 They are extracted and the following step is the same for gradunwarp and
@@ -67,7 +67,7 @@ typical usage
 ### Positional Arguments
 
 The input file (in Nifti or MGH formats) followed by the output file
-name (which has the Nifti or MGH extensions — .nii/.nii.gz/.mgh/.mgz)
+name (which has the Nifti or MGH extensions -- .nii/.nii.gz/.mgh/.mgz)
 followed by the vendor name.
 
 ### Required Options
@@ -92,7 +92,7 @@ These two options are mutually exclusive.
     --fovmax <fovmax> : a float argument which specifies the maximum extent of the grid where spherical harmonics are evaluated. (in meters). Default is .3
     --numpoints <numpoints> : an int argument which specifies the number of points in the grid. (in each direction). Default is 60
 
-    --interp_order <order of interpolation> : takes values from 1 to 4. 1 means the interpolation is going to be linear which is a faster method but not as good as higher order interpolations. 
+    --interp_order <order of interpolation> : takes values from 1 to 4. 1 means the interpolation is going to be linear which is a faster method but not as good as higher order interpolations.
 
     --help : display help
 
@@ -107,41 +107,28 @@ entire unwarping)
 
 Some thoughts:
 
->  -  Use lower resolution volumes if possible
->  -  Run gradunwarp in a computer with more memory
->  -  Use —numpoints to reduce the grid size. —fovmin and —fovmax can
-      be used to move the grid close to your data extents.
->  -  Use non-compressed source volumes. i.e. .mgh and .nii instead of .mgz/.nii.gz
->  -  Recent versions of Python, numpy and scipy
+* Use lower resolution volumes if possible
+* Run gradunwarp in a computer with more memory
+* Use -numpoints to reduce the grid size. -fovmin and -fovmax can
+  be used to move the grid close to your data extents.
+* Use non-compressed source volumes. i.e. .mgh and .nii instead of .mgz/.nii.gz
+* Recent versions of Python, numpy and scipy
 
-## Future Work
+## [HCP][HCP] additions
 
-> -   support for GE processing (near future)
-> -   better support for high res volumes (process it slice-by-slice?)
-> -   report statistics
-> -   explore removal of Numpy-devel dependency if the speedup is not
->     that significant
-
-## Release Notes
-
-gradunwarp-2.1_slice_alpha.tar.gz
----------------------------------
-> - slice by slice processing
-> - x-y flip bug fix
-> - force 32-bit output in 64-bit systems
+* slice by slice processing
+* x-y flip bug fix
+* force 32-bit output in 64-bit systems
 
 ## License
 
-gradunwarp is licensed under the terms of the MIT license. Please see
-the COPYING file in the distribution. gradunwarp also bundles Nibabel
-([http://nipy.org/nibabel][] ) which is licensed under the MIT license
-as well.
+Please see the Copying.md file in the distribution.
 
 ## Credit
 
-> -   Jon Polimeni - gradunwarp follows his original MATLAB code
-> -   Karl Helmer - Project Incharge
-> -   Nibabel team
+* Jon Polimeni - gradunwarp follows his original MATLAB code
+* Karl Helmer - Project Incharge
+* Nibabel team
 
 <!-- References -->
 
@@ -150,17 +137,9 @@ as well.
 [HCP]: http://www.humanconnectome.org
 [gradunwarp-hcp-1.0-tarball]: https://github.com/downloads/Washington-University/gradunwarp-1.0.tar.gz
 [nibabel-tarball]: https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
-
-
- 
-
-
-
-
-
-  [https://github.com/downloads/ksubramz/gradunwarp/gradunwarp-2.0_alpha.tar.gz]:
-    https://github.com/downloads/ksubramz/gradunwarp/gradunwarp-2.0_alpha.tar.gz
-  [https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz]:
-    https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
-  [http://nipy.org/nibabel]: http://nipy.org/nibabel
-
+[Numpy]: www.numpy.org
+[Scipy]: www.scipy.org
+[nibabel]: nipy.org/nibabel
+[PyDICOM]: code.google.com/p/pydicom
+[nose]: pypi.python.org/pypi/nose
+[sphinx]: sphinx-doc.org
