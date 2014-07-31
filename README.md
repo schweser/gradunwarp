@@ -6,7 +6,7 @@ unwarp Siemens data.
 
 This is the [Human Connectome Project version of the gradunwarp package][gradunwarp-hcp].
 
-It is forked from a ["no longer actively maintained" gradunwarp package][gradunwarp-ksubramz].
+It is forked from a "no longer actively maintained" [gradunwarp package][gradunwarp-ksubramz].
 
 This fork contains changes made for and by the WU-Minn Human Connectome Project consortium ([HCP][HCP])
 for use within the [HCP Minimal Preprocessing Pipelines][HCP Pipelines].
