@@ -152,7 +152,7 @@ To do this, after cloning the [HCP Pipelines Repository][HCP Pipelines] use:
 [gradunwarp-hcp]: https://github.com/Washington-University/gradunwarp
 [gradunwarp-ksubramz]: https://github.com/ksubramz/gradunwarp
 [HCP]: http://www.humanconnectome.org
-[gradunwarp-hcp-tarball]: https://github.com/downloads/Washington-University/gradunwarp/releases
+[gradunwarp-hcp-tarball]: https://github.com/Washington-University/gradunwarp/releases
 [nibabel-tarball]: https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
 [Numpy]: http://www.numpy.org
 [Scipy]: http://www.scipy.org
