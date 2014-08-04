@@ -37,7 +37,7 @@ The installation of these in Ubuntu is as simple as
 ### Install
 
 For convenience both the gradunwarp tarball can be downloaded
-[here][gradunwarp-hcp-3.0.0-tarball] and the nibabel tarball can be downloaded
+[here][gradunwarp-hcp-tarball] and the nibabel tarball can be downloaded
 from [here][nibabel-tarball].
 
 They are extracted and the following step is the same for gradunwarp and
@@ -152,7 +152,7 @@ To do this, after cloning the [HCP Pipelines Repository][HCP Pipelines] use:
 [gradunwarp-hcp]: https://github.com/Washington-University/gradunwarp
 [gradunwarp-ksubramz]: https://github.com/ksubramz/gradunwarp
 [HCP]: http://www.humanconnectome.org
-[gradunwarp-hcp-3.0.0-tarball]: https://github.com/downloads/Washington-University/gradunwarp-3.0.0.tar.gz
+[gradunwarp-hcp-tarball]: https://github.com/downloads/Washington-University/gradunwarp/releases
 [nibabel-tarball]: https://github.com/downloads/ksubramz/gradunwarp/nibabel-1.2.0.dev.tar.gz
 [Numpy]: http://www.numpy.org
 [Scipy]: http://www.scipy.org
