@@ -14,7 +14,7 @@ gradient_unwarp infile outfile manufacturer -g <coefficient file> [optional argu
 
 
 # SIEMENS stuff
-siemens_cas = 14  # coefficient array size
+siemens_cas = 200  # initial coefficient array size (gets pruned after reading file)
 siemens_fovmin = -.30  # fov min in meters
 siemens_fovmax = .30  # fov max in meters
 siemens_numpoints = 60 # number of grid points in each direction
