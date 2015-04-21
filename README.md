@@ -51,7 +51,7 @@ case, you can use the `--prefix` switch of setup.py install.
     python setup.py install --prefix=/home/foo/
 
 In that case, make sure your `PATH` has `/home/foo/bin` and make sure the
-`PYTHONPATH` has `/home/foo/bin/lib/python-2.7/site-packages/`
+`PYTHONPATH` has `/home/foo/lib/python-2.7/site-packages/`
 
 ## Usage
 
