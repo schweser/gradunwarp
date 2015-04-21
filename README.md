@@ -17,7 +17,7 @@ for use within the [HCP Minimal Preprocessing Pipelines][HCP Pipelines].
 
 gradunwarp needs
 
-* Python (>2.7)
+* Python (>=2.7)
 * [Numpy][Numpy] (preferably, the latest)
 * [Scipy][Scipy] (preferably, the latest)
 * Numpy devel package (to compile external modules written in C)
