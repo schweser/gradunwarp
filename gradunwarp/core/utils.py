@@ -4,6 +4,7 @@
 #   copyright and license terms.
 #
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
+from __future__ import print_function
 import numpy as np
 from collections import namedtuple
 import math
@@ -45,7 +46,7 @@ def transform_coordinates(A, M):
     A3 = A3.astype(np.float32)
     M = M.astype(np.float32)
     try:
-        from transform_coordinates_ext import _transform_coordinates
+        from .transform_coordinates_ext import _transform_coordinates
     except ImportError:
         raise ImportError('The transform_coordinates C extension module is missing.' \
                            ' Fallback code not yet implemented.')
@@ -256,7 +257,7 @@ def legendre_old(nu, mu, x):
         return p_nu
 
     # Iterate the recursion relation.
-    for n in xrange(mu + 2, nu + 1):
+    for n in range(mu + 2, nu + 1):
         result = (x * (2 * n - 1) * p_nu - (n + mu - 1) * p_nu_prev) / (n - mu)
         p_nu_prev = p_nu
         p_nu = result
@@ -266,7 +267,7 @@ def legendre_old(nu, mu, x):
 
 def legendre(nu, mu, x):
     try:
-        from legendre_ext import _legendre
+        from .legendre_ext import _legendre
     except ImportError:
         raise ImportError('The legendre C extension module is missing.' \
                            ' Fallback legendre code not yet implemented.')
@@ -282,7 +283,7 @@ def interp3(vol, R, C, S):
     TODO
     '''
     try:
-        from interp3_ext import _interp3
+        from .interp3_ext import _interp3
     except ImportError:
         raise ImportError('The interp3 C extension module is missing.' \
                            ' Fallback interp3 code not yet implemented.')
@@ -312,15 +313,15 @@ if __name__ == '__main__':
     arr = np.sin(arr)
     arr = arr.reshape(10, 20, 30).astype('float32')
     gridn = 1
-    for c in xrange(8):
+    for c in range(8):
         R1 = np.linspace(4., 5., gridn).astype('float32')
         C1 = np.linspace(11., 12., gridn).astype('float32')
         S1 = np.linspace(15., 16., gridn).astype('float32')
         tic = time.time()
         v1 = interp3(arr, R1, C1, S1)
         if gridn == 10 or gridn == 1:
-            print v1
+            print(v1)
         toc = time.time()
-        print "1 followed by %d zeros" % c, "|", gridn, "|", \
-               toc - tic, "seconds"
+        print("1 followed by %d zeros" % c, "|", gridn, "|", \
+               toc - tic, "seconds")
         gridn = gridn * 10

@@ -4,12 +4,13 @@
 #   copyright and license terms.
 #
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
+from __future__ import absolute_import
 from collections import namedtuple
 import numpy as np
 import logging
 import re
-import globals
-from globals import siemens_cas, ge_cas
+from . import globals
+from .globals import siemens_cas, ge_cas
 
 
 log = logging.getLogger('gradunwarp')
@@ -17,6 +18,13 @@ log = logging.getLogger('gradunwarp')
 
 Coeffs = namedtuple('Coeffs', 'alpha_x, alpha_y, alpha_z, \
                         beta_x, beta_y, beta_z, R0_m')
+
+try:
+    advance_iterator = next
+except NameError:
+    def advance_iterator(it):
+        return it.next()
+next = advance_iterator
 
 
 def get_coefficients(vendor, cfile):
@@ -115,25 +123,25 @@ def grad_file_parse(gfile, txt_var_map):
     modifies txt_var_map in place
     '''
     gf = open(gfile, 'r')
-    line = gf.next()
+    line = next(gf)
     # skip the comments
     while not line.startswith('#*] END:'):
-        line = gf.next()
+        line = next(gf)
 
     # get R0
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
     R0_m = float(line.strip().split()[0])
 
     # go to the data
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
-    line = gf.next()
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
+    line = next(gf)
 
     xmax = 0
     ymax = 0
@@ -164,7 +172,7 @@ def grad_file_parse(gfile, txt_var_map):
         if line.find('B') != -1 and line.find('z') != -1:
             txt_var_map['Beta_z'][x,y] = float(line.split()[-2])
         try:
-            line = gf.next()
+            line = next(gf)
         except StopIteration:
             break
 

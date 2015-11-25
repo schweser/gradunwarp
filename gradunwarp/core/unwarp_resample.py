@@ -4,6 +4,7 @@
 #   copyright and license terms.
 #
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
+from __future__ import absolute_import, print_function
 import numpy as np
 import sys
 import pdb
@@ -11,11 +12,11 @@ import gc
 import math
 import logging
 from scipy import ndimage
-import utils
-from utils import CoordsVector as CV
-from utils import factorial
-import globals
-from globals import siemens_max_det
+from . import utils
+from .utils import CoordsVector as CV
+from .utils import factorial
+from . import globals
+from .globals import siemens_max_det
 import nibabel as nib
 import subprocess
 
@@ -199,13 +200,13 @@ class Unwarper(object):
 
         log.info('Unwarping slice by slice')
         # for every slice
-        for s in xrange(ns):
+        for s in range(ns):
             # pretty print
             sys.stdout.flush()
             if (s+1) % 10 == 0:
-                print s+1,
+                print(s+1, end=' ')
             else:
-                print '.',
+                print('.', end=' ')
                 
             # hopefully, free memory
             gc.collect()
@@ -305,7 +306,7 @@ class Unwarper(object):
             fullWarp[...,s,2]=vfsl.z
             out[..., s] = im2
 
-        print
+        print()
        
         img=nib.Nifti1Image(fullWarp,self.m_rcs2ras)
         nib.save(img,"fullWarp_abs.nii.gz")
@@ -405,9 +406,9 @@ def siemens_B(alpha, beta, x1, y1, z1, R0):
     phi = np.arctan2(y1 / r, x1 / r)
 
     b = np.zeros(x1.shape)
-    for n in xrange(0, nmax + 1):
+    for n in range(0, nmax + 1):
         f = np.power(r / R0, n)
-        for m in xrange(0, n + 1):
+        for m in range(0, n + 1):
             f2 = alpha[n, m] * np.cos(m * phi) + beta[n, m] * np.sin(m * phi)
             _ptemp = utils.legendre(n, m, np.cos(theta))
             #_ptemp = scipy.special.lpmv(m, n, np.cos(theta))
@@ -436,10 +437,10 @@ def ge_D(alpha, beta, x1, y1, z1):
     r = r * 100.0  # GE wants cm, so meters -> cm
     d = np.zeros(x1.shape)
 
-    for n in xrange(0, nmax + 1):
+    for n in range(0, nmax + 1):
         # So GE uses the usual unnormalized legendre polys.
         f = np.power(r, n)
-        for m in xrange(0, n + 1):
+        for m in range(0, n + 1):
             f2 = alpha[n, m] * np.cos(m * theta) + beta[n, m] \
             * np.sin(m * theta)
             _p = utils.legendre(n, m, np.cos(phi))

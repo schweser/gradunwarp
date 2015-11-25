@@ -4,4 +4,5 @@
 #   copyright and license terms.
 #
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
-from unwarp_resample import Unwarper
+from __future__ import absolute_import
+from .unwarp_resample import Unwarper
