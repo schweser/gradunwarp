@@ -24,9 +24,46 @@ static PyMethodDef transform_coordinatesmethods[] = {
 
 
 // This function is essential for an extension for Numpy created in C
-void inittransform_coordinates_ext() {
-	(void) Py_InitModule("transform_coordinates_ext", transform_coordinatesmethods);
-	import_array();
+#if PY_MAJOR_VERSION >= 3
+
+static struct PyModuleDef moduledef = {
+        PyModuleDef_HEAD_INIT,
+        "transform_coordinates_ext",
+        NULL,
+        -1,
+        transform_coordinatesmethods,
+        NULL,
+        NULL,
+        NULL,
+        NULL
+};
+
+#define INITERROR return NULL
+
+PyObject *
+PyInit_transform_coordinates_ext(void)
+
+#else
+#define INITERROR return
+
+void
+inittransform_coordinates_ext(void)
+#endif
+{
+#if PY_MAJOR_VERSION >= 3
+    PyObject *module = PyModule_Create(&moduledef);
+#else
+    PyObject *module = Py_InitModule("transform_coordinates_ext", transform_coordinatesmethods);
+#endif
+
+    if (module == NULL)
+        INITERROR;
+
+    import_array();
+
+#if PY_MAJOR_VERSION >= 3
+    return module;
+#endif
 }
 
 

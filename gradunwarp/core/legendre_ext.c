@@ -23,9 +23,46 @@ static PyMethodDef legendremethods[] = {
 };
 
 // This function is essential for an extension for Numpy created in C
-void initlegendre_ext() {
-	(void) Py_InitModule("legendre_ext", legendremethods);
-	import_array();
+#if PY_MAJOR_VERSION >= 3
+
+static struct PyModuleDef moduledef = {
+        PyModuleDef_HEAD_INIT,
+        "legendre_ext",
+        NULL,
+        -1,
+        legendremethods,
+        NULL,
+        NULL,
+        NULL,
+        NULL
+};
+
+#define INITERROR return NULL
+
+PyObject *
+PyInit_legendre_ext(void)
+
+#else
+#define INITERROR return
+
+void
+initlegendre_ext(void)
+#endif
+{
+#if PY_MAJOR_VERSION >= 3
+    PyObject *module = PyModule_Create(&moduledef);
+#else
+    PyObject *module = Py_InitModule("legendre_ext", legendremethods);
+#endif
+
+    if (module == NULL)
+        INITERROR;
+
+    import_array();
+
+#if PY_MAJOR_VERSION >= 3
+    return module;
+#endif
 }
 
 // the data should be FLOAT32 and should be ensured in the wrapper 

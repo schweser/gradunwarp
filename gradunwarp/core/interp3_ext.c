@@ -26,9 +26,45 @@ static PyMethodDef tricubicmethods[] = {
 };
 
 // This function is essential for an extension for Numpy created in C
-void initinterp3_ext() {
-	(void) Py_InitModule("interp3_ext", tricubicmethods);
-	import_array();
+#if PY_MAJOR_VERSION >= 3
+
+static struct PyModuleDef moduledef = {
+        PyModuleDef_HEAD_INIT,
+        "interp3_ext",
+        NULL,
+        -1,
+        tricubicmethods,
+        NULL,
+        NULL,
+        NULL,
+        NULL
+};
+#define INITERROR return NULL
+
+PyObject *
+PyInit_interp3_ext(void)
+
+#else
+#define INITERROR return
+
+void
+initinterp3_ext(void)
+#endif
+{
+#if PY_MAJOR_VERSION >= 3
+    PyObject *module = PyModule_Create(&moduledef);
+#else
+    PyObject *module = Py_InitModule("interp3_ext", tricubicmethods);
+#endif
+
+    if (module == NULL)
+        INITERROR;
+
+    import_array();
+
+#if PY_MAJOR_VERSION >= 3
+    return module;
+#endif
 }
 
 // the data should be FLOAT32 and should be ensured in the wrapper 
