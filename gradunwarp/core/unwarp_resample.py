@@ -208,8 +208,8 @@ class Unwarper(object):
         pixdim2=float((subprocess.Popen(['fslval', self.name,'pixdim2'], stdout=subprocess.PIPE).communicate()[0]).strip())
         pixdim3=float((subprocess.Popen(['fslval', self.name,'pixdim3'], stdout=subprocess.PIPE).communicate()[0]).strip())
         dim1=float((subprocess.Popen(['fslval', self.name,'dim1'], stdout=subprocess.PIPE).communicate()[0]).strip())
-        outputOrient=subprocess.Popen(['fslorient', self.name], stdout=subprocess.PIPE).communicate()[0]
-        if outputOrient.strip() == 'NEUROLOGICAL':
+        outputOrient=subprocess.Popen(['fslorient', self.name], stdout=subprocess.PIPE).communicate()[0].strip()
+        if outputOrient == b'NEUROLOGICAL':
             log.info('Input volume is NEUROLOGICAL orientation. Flipping x-axis in output fullWarp_abs.nii.gz')
             # if neurological then flip x coordinate (both here in premat and later in postmat)
             m_vox2fsl = np.array([[-1.0*pixdim1, 0.0, 0.0, pixdim1*(dim1-1)],
