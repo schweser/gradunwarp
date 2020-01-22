@@ -55,7 +55,7 @@ In that case, make sure your `PATH` has `/home/foo/bin` and make sure the
 
 ## Usage
 
-Note that a core component of `gradient_unwarp.py` (`unwarp_resample.py`) uses a `subprocess` call to the FSL tools `fslval` and `fslorient`. So, `FSLDIR` must be defined appropriately in your environment, and `${FSLDIR}/bin` must be in your `PATH`.
+Note that a core component of `gradient_unwarp.py` (`unwarp_resample.py`) uses a `subprocess` call to the FSL tools `fslval` and `fslorient`. So, `FSLDIR` and `FSLOUTPUTTYPE` must be defined appropriately in your environment, and `${FSLDIR}/bin` must be in your `PATH` and contain `fslval`, `fslorient`, and `fslhd`.
 
 skeleton
 
