@@ -18,7 +18,12 @@ def argument_parse_gradunwarp():
     '''Arguments parser from the command line
     '''
     # initiate
-    p = arg.ArgumentParser(version=globals.VERSION, usage=globals.usage)
+    try:
+        p = arg.ArgumentParser(usage=globals.usage)
+        p.add_argument('--version', '-v', action='version', version=globals.VERSION)
+    except:
+        #maintain compatibility with pre py2.7 argparse (deprecated in py2.7 but fails in py3)
+        p = arg.ArgumentParser(version=globals.VERSION, usage=globals.usage)
 
     # required arguments
     p.add_argument('infile', action='store',
