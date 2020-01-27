@@ -17,7 +17,7 @@ for use within the [HCP Minimal Preprocessing Pipelines][HCP Pipelines].
 
 gradunwarp needs
 
-* Python (>=2.7)
+* Python (>=2.7 or 3.x)
 * [Numpy][Numpy] (preferably, the latest)
 * [Scipy][Scipy] (preferably, the latest)
 * Numpy devel package (to compile external modules written in C)
@@ -122,6 +122,7 @@ Some thoughts:
 * slice by slice processing
 * x-y flip bug fix
 * force 32-bit output in 64-bit systems
+* modified for Python3 compatibility
 
 ## License
 
