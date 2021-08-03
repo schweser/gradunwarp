@@ -115,6 +115,11 @@ class Unwarper(object):
                              [0.0, 1.0, 0.0, 0.0],
                              [0.0, 0.0, -1.0, 0.0],
                              [0.0, 0.0, 0.0, 1.0]], dtype=np.float)
+        #m_rcs2ras_mod = self.m_rcs2ras * 1.0
+        #if self.vendor == 'ge':
+        #    log.info('Setting translation to zero because GE moves table to isocenter.')
+        #    m_rcs2ras_mod[2,3] = m_rcs2ras_mod[2,3] - 20
+        #m_rcs2lai = np.dot(m_ras2lai, m_rcs2ras_mod)
         m_rcs2lai = np.dot(m_ras2lai, self.m_rcs2ras)
         m_rcs2lai_nohalf = m_rcs2lai[:, :]
 
@@ -150,6 +155,9 @@ class Unwarper(object):
 
         # do the nonlinear unwarp
         if self.vendor == 'siemens':
+            self.out, self.vjacout = self.non_linear_unwarp_siemens(self.vol.shape, dv, dxyz,
+                                                                 m_rcs2lai, m_rcs2lai_nohalf, g_xyz2rcs)
+        if self.vendor == 'ge':
             self.out, self.vjacout = self.non_linear_unwarp_siemens(self.vol.shape, dv, dxyz,
                                                                  m_rcs2lai, m_rcs2lai_nohalf, g_xyz2rcs)
 
@@ -324,6 +332,7 @@ class Unwarper(object):
         log.info('Writing output to ' + outfile)
         # if out datatype is float64 make it float32
         if self.out.dtype == np.float64:
+            log.info('Recasting as float32')
             self.out = self.out.astype(np.float32)
         if outfile.endswith('.nii') or outfile.endswith('.nii.gz'):
             img = nib.Nifti1Image(self.out, self.m_rcs2ras)
@@ -372,8 +381,7 @@ def eval_spherical_harmonics(coeffs, vendor, vxyz):
     resolution : float
         (optional) useful in case vxyz is scalar
     '''
-    # convert radius into mm
-    R0 = coeffs.R0_m  * 1000
+    
 
     x, y, z = vxyz
 
@@ -381,23 +389,32 @@ def eval_spherical_harmonics(coeffs, vendor, vxyz):
     # log.info('calculating displacements (mm) '
     #        'using spherical harmonics coeffcients...')
     if vendor == 'siemens':
-        log.info('along x...')
+        # convert radius into mm
+        R0 = coeffs.R0_m  * 1000
+        #log.info(['alpha shape:' , coeffs.alpha_x.shape[0]])
+        #log.info(['alpha shape:' , coeffs.alpha_x.shape[1]])
+        log.info('TEST...')
         bx = siemens_B(coeffs.alpha_x, coeffs.beta_x, x, y, z, R0)
         log.info('along y...')
         by = siemens_B(coeffs.alpha_y, coeffs.beta_y, x, y, z, R0)
         log.info('along z...')
         bz = siemens_B(coeffs.alpha_z, coeffs.beta_z, x, y, z, R0)
+        bx = bx * R0
+        by = by * R0
+        bz = bz * R0
     else:
-        # GE
+        # GE.
+        #log.info(['alpha shape:' , coeffs.alpha_x.shape[0]])
+        #log.info(['alpha shape:' , coeffs.alpha_x.shape[1]])
+        #log.info(['x:' , x[0,0,0]])
         log.info('along x...')
         bx = ge_D(coeffs.alpha_x, coeffs.beta_x, x, y, z)
         log.info('along y...')
         by = ge_D(coeffs.alpha_y, coeffs.beta_y, x, y, z)
         log.info('along z...')
-        bz = siemens_B(coeffs.alpha_z, coeffs.beta_z, x, y, z, R0)
         bz = ge_D(coeffs.alpha_z, coeffs.beta_z, x, y, z)
 
-    return CV(bx * R0, by * R0, bz * R0), CV(x, y, z)
+    return CV(bx, by, bz), CV(x, y, z)
 
 
 #@profile
@@ -414,6 +431,7 @@ def siemens_B(alpha, beta, x1, y1, z1, R0):
 
     b = np.zeros(x1.shape)
     for n in range(0, nmax + 1):
+        log.info('TEST...')
         f = np.power(r / R0, n)
         for m in range(0, n + 1):
             f2 = alpha[n, m] * np.cos(m * phi) + beta[n, m] * np.sin(m * phi)
@@ -441,16 +459,21 @@ def ge_D(alpha, beta, x1, y1, z1):
     phi = np.arccos(z1 / r)
     theta = np.arctan2(y1 / r, x1 / r)
 
-    r = r * 100.0  # GE wants cm, so meters -> cm
+    #r = r * 100.0  # GE wants cm, so meters -> cm
+    #r = r * 10.0  # GE wants cm, so mm -> cm
+    
+    r = r * 0.1
     d = np.zeros(x1.shape)
 
     for n in range(0, nmax + 1):
         # So GE uses the usual unnormalized legendre polys.
         f = np.power(r, n)
         for m in range(0, n + 1):
+            #log.info(['n=' , n , ' // m=' , m , ' // alpha:' , alpha[n, m] , ' // beta:' , beta[n, m]])
             f2 = alpha[n, m] * np.cos(m * theta) + beta[n, m] \
             * np.sin(m * theta)
             _p = utils.legendre(n, m, np.cos(phi))
             d = d + f * _p * f2
-    d = d / 100.0  # cm back to meters
+            #log.info(d[20,20,20])
+    d = d / 0.1  # cm back to mm
     return d

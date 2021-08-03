@@ -36,6 +36,8 @@ def get_coefficients(vendor, cfile):
         return get_siemens_coef(cfile)
     if vendor == 'siemens' and cfile.endswith('.grad'):
         return get_siemens_grad(cfile)
+    if vendor == 'ge' and cfile.endswith('.coef'):
+        return get_ge_coef(cfile)
 
 
 def coef_file_parse(cfile, txt_var_map):
@@ -69,7 +71,8 @@ def get_siemens_coef(cfile):
                'allegra': 0.14,
                'as39s': 0.25,
                'as39st': 0.25,
-               'as39t': 0.25}
+               'as39t': 0.25,
+               'test': 0.0001}
     for rad in R0m_map.keys():
         if cfile.startswith(rad):
             R0_m = R0m_map[rad]
@@ -114,7 +117,7 @@ def get_ge_coef(cfile):
 
     coef_file_parse(cfile, txt_var_map)
 
-    return Coeffs(ax, ay, az, bx, by, bz, R0_m)
+    return Coeffs(ax, ay, az, bx, by, bz, 1)
 
 def grad_file_parse(gfile, txt_var_map):
     ''' a separate function because GE and Siemens .coef files
